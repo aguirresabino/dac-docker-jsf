@@ -35,7 +35,7 @@ public class ContatoController implements Serializable{
         contatoService = new ContatoService();
         contato = new Contato();
         dadosLogin = new Contato();
-        contatos = this.read();
+        contatos = this.initContatos();
         letra = "";
         nome = "";
         modeEdit = false;
@@ -65,7 +65,11 @@ public class ContatoController implements Serializable{
         return "";
     }
 
-    public List<Contato> read() {
+    public void read() {
+        this.contatos = initContatos();
+    }
+    
+    private List<Contato> initContatos(){
         return this.contatoService.read();
     }
 
