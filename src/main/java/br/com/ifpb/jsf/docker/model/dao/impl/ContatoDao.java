@@ -203,7 +203,7 @@ public class ContatoDao implements ContatoDaoIF {
             String sql = "SELECT * FROM Contato WHERE nome ILIKE ?;";
             stmt = con.prepareStatement(sql);
             
-            stmt.setString(1, nome);
+            stmt.setString(1, nome + "%");
             
             ResultSet rs = stmt.executeQuery();
             contatos = new ArrayList<>();
@@ -243,7 +243,7 @@ public class ContatoDao implements ContatoDaoIF {
             String sql = "SELECT * FROM Contato WHERE nome ILIKE ?;";
             stmt = con.prepareStatement(sql);
             
-            stmt.setString(1, letra);
+            stmt.setString(1, letra + "%");
             
             ResultSet rs = stmt.executeQuery();
             contatos = new ArrayList<>();

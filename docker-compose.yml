@@ -1,0 +1,18 @@
+version: '2'
+services:
+    postgres:
+        #container_name: postgres
+        image: aguirresabino/postgres
+        build: ./postgres
+        #ports:
+        #  - "5432:5432"
+    app:
+        container_name: app
+        image: aguirresabino/app
+        build: .
+        ports:
+          - "8080:8080"
+        links:
+          - postgres
+        depends_on: 
+          - postgres

@@ -10,7 +10,6 @@
             <h:commandButton value="Sair" action="#{contatoController.logoff()}"/>
         </h:form>
         <h:form>
-            <h1>Lista de contatos</h1>
 
         </h:form>
         <h1>Cadastrar contatos</h1>
@@ -25,19 +24,28 @@
         <br/>
         <hr/>
         <br/>
-        <h1>Contatos cadastrados</h1>
-        <h:dataTable value="#{contatoController.read()}" var="contato">
-            <h:column>#{contato.email}</h:column>
-            <h:column>#{contato.nome}</h:column>
-            <h:column>#{contato.telefone}</h:column>
-            <h:column>#{contato.dataNascimento}</h:column>
-            <h:column>
-                <h:commandButton value="X" action="#{contatoController.delete()}"/>
-            </h:column>
-            <h:column>
-                <h:commandButton value="Editar" action="#{contatoController.editar(contato)}"/>
-            </h:column>
-        </h:dataTable>
+        <h:form>
+            <h1>Lista de contatos</h1>
+            <p>Letra: </p> <h:inputText value="#{contatoController.letra}"/>
+            <h:commandButton value="Buscar" action="#{contatoController.orderByLetra()}"/>
+            <br/>
+            <p>Nome: </p> <h:inputText value="#{contatoController.nome}"/>
+            <h:commandButton value="Buscar" action="#{contatoController.searchByNome()}"/>
+            <br/>
+            <h:commandButton value="Todos" action="#{contatoController.read()}"/>
+            <h:dataTable value="#{contatoController.contatos}" var="contato">
+                <h:column>#{contato.email}</h:column>
+                <h:column>#{contato.nome}</h:column>
+                <h:column>#{contato.telefone}</h:column>
+                <h:column>#{contato.dataNascimento}</h:column>
+                <h:column>
+                    <h:commandButton value="X" action="#{contatoController.delete(contato)}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Editar" action="#{contatoController.edit(contato)}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
     </h:body>
 </html>
 

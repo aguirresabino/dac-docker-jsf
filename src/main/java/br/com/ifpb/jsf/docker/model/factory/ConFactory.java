@@ -20,7 +20,7 @@ public class ConFactory {
     private final Properties props;
 
     public ConFactory(){
-        this.host = "jdbc:postgresql://127.0.0.1:5432/dac-jsf-docker";
+        this.host = "jdbc:postgresql://postgres:5432/dac-jsf-docker";
         props = new Properties();
         props.setProperty("user", "postgres");
         props.setProperty("password", "postgres");

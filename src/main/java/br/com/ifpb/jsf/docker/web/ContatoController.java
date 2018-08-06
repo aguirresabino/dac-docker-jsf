@@ -25,7 +25,9 @@ public class ContatoController implements Serializable{
     private ContatoService contatoService;
     private Contato contato;
     private Contato dadosLogin;
-    private String busca;
+    private List<Contato> contatos;
+    private String letra;
+    private String nome;
     private boolean modeEdit;
 
     
@@ -33,6 +35,9 @@ public class ContatoController implements Serializable{
         contatoService = new ContatoService();
         contato = new Contato();
         dadosLogin = new Contato();
+        contatos = this.read();
+        letra = "";
+        nome = "";
         modeEdit = false;
     }
 
@@ -40,6 +45,7 @@ public class ContatoController implements Serializable{
         this.contato = this.contatoService.login(this.dadosLogin);
         dadosLogin = new Contato();
         if(this.contato != null){
+            this.contato = new Contato();
             return "inicio.xhtml";
         }
         this.contato = new Contato();
@@ -63,14 +69,14 @@ public class ContatoController implements Serializable{
         return this.contatoService.read();
     }
 
-    public String update(Contato contato) {
+    public String update() {
         this.contatoService.update(this.contato);
         this.contato = new Contato();
         this.setModeEdit(false);
         return null;
     }
     
-    public String editando(Contato contato) {
+    public String edit(Contato contato) {
         this.contato = contato;
         this.setModeEdit(true);
         return null;
@@ -82,16 +88,14 @@ public class ContatoController implements Serializable{
         return null;
     }
     
-    public List<Contato> searchByNome(){
-        List<Contato> contatos = this.contatoService.searchByNome(this.busca);
-        this.busca = "";
-        return contatos;
+    public void searchByNome(){
+        this.contatos = this.contatoService.searchByNome(this.nome);
+        this.nome = "";
     }
     
-    public List<Contato> orderByLetra(){
-        List<Contato> contatos = this.contatoService.searchByNome(this.busca);
-        this.busca = "";
-        return contatos;
+    public void orderByLetra(){
+        this.contatos = this.contatoService.orderByLetra(this.letra);
+        this.letra = "";
     }
     
     public String logoff(){
@@ -111,12 +115,12 @@ public class ContatoController implements Serializable{
         return dadosLogin;
     }
 
-    public String getBusca() {
-        return busca;
+    public String getLetra() {
+        return letra;
     }
 
-    public void setBusca(String busca) {
-        this.busca = busca;
+    public void setLetra(String letra) {
+        this.letra = letra;
     }
 
     public boolean isModeEdit() {
@@ -129,6 +133,22 @@ public class ContatoController implements Serializable{
 
     public void setDadosLogin(Contato dadosLogin) {
         this.dadosLogin = dadosLogin;
+    }
+
+    public List<Contato> getContatos() {
+        return contatos;
+    }
+
+    public void setContatos(List<Contato> contatos) {
+        this.contatos = contatos;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
     private void showMessage(String message, FacesMessage.Severity erro){
