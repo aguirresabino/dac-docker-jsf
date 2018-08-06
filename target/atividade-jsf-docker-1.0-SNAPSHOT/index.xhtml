@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Tela de login e cadastro</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p>Email:</p> <h:inputText  value="#{contatoController.dadosLogin.email}"/>
+            <br/><br/>
+            <h:commandButton value="Login" action="#{contatoController.login()}" />
+        </h:form>
+        <br/>
+        <hr/>
+        <br/>
+        <h:form>
+            <p>Nome:</p> <h:inputText value="#{contatoController.contato.nome}"/> <br/>
+            <p>Email:</p> <h:inputText value="#{contatoController.contato.email}"/> <br/>
+            <p>Telefone:</p> <h:inputText value="#{contatoController.contato.telefone}"/> <br/>
+            <p>Nascimento:</p> <h:inputText value="#{contatoController.contato.dataNascimento}" converter="converter.Date"/> <br/>
+            <h:commandButton value="Cadastrar" action="#{contatoController.create()}"/>
+        </h:form>
+    </h:body>
+</html>
+
