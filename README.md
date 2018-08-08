@@ -6,7 +6,7 @@
 
 ### Acessar: 
 
-http://localhost:8080/atividade-jsf-docker/dac/inicio.xhtml
+http://localhost:8080/atividade-jsf-docker/dac/index.xhtml
 
 ### Finalizando aplicação:
 
